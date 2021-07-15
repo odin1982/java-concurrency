@@ -10,36 +10,20 @@ public class ExecutorServiceExample {
 	private static final Logger log = Logger.getLogger(ExecutorServiceExample.class.getName());
 	
 	//Case 1: The thread never stop you can see it in the Console
-	/*
+	
 	public static void main(String[] args) {
 		ExecutorService executor = Executors.newSingleThreadExecutor();
 		executor.submit(()->{
 			String threadName = Thread.currentThread().getName();
 			log.info("Hello " + threadName);
 		});
-	}
-	*/
-	
-	public static void main(String[] args){
-		ExecutorService executor = Executors.newSingleThreadExecutor();
-		executor.submit(()->{
-			String threadName = Thread.currentThread().getName();
-			log.info("Hello " + threadName);
-		});
+		//Espera a que terminen todas las tareas y da de baja el executor
+		//shutdownNow = Interrumpe las tareas y da de baja el executor
+		executor.shutdown();
 		
-		try {
-			log.info("attempt to shutdown executor");
-			executor.shutdown();
-			executor.awaitTermination(5, TimeUnit.SECONDS);
-		}catch(InterruptedException e) {
-			log.warning("task interrupted");
-		}finally {
-			if(!executor.isTerminated()) {
-				log.warning("cancel non-finished tasks");
-			}
-			executor.shutdownNow();
-			log.info("shutdown finished");
-		}
 	}
-
+	
+	
+	
+	
 }

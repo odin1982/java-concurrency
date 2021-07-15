@@ -19,3 +19,9 @@
 
     () -> System.out.println("Thread");         // OK
     () -> ""                                    //DOES NOT COMPILE return a String
+
+## ExecutorService shutdown()
+    Espera a que terminen todas las tareas y da de baja el executor
+
+## ExecutorService shutdownNow()
+    Interrumpe todas las tareas y da de baja el executor
